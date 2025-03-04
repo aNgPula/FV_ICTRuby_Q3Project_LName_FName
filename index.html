@@ -11,17 +11,17 @@
 	<style>
 
 #Train{
-	margin-top: 100px;
-	}
-
-#Tr{
 		width: 800px;
 		padding: 20px;
 		margin: auto;
 		background: rgba(0, 0, 0, 0.5);
 		box-shadow: 2px 2px 10px rgba(0,0,0, 0.8);
 }
+
+
 	body{
+		margin-top: 100px;
+		margin-bottom: 100px;
 		background-image: url(https://media.istockphoto.com/id/1012117520/photo/mrt-train-in-manila.jpg?s=612x612&w=0&k=20&c=ETmzrVi_dzhQQrEo3CH-YyIw46BvN41X66NbRxeCMZA=);
 		background-repeat:no-repeat;
 		background-size: cover;
@@ -31,8 +31,8 @@
 	}
 
 	h1{
-		color:aliceblue;
-		font-family: forte;
+		color: skyblue;
+		font-family: Consolas;
 	}
 	</style>
 
@@ -41,7 +41,7 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 		<div class="container container-fluid">
-			<a class="navbar-brand" href="index.html"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Melbourne_train_logo.svg/1022px-Melbourne_train_logo.svg.png" style="width: 100px; height: 50px"></a>
+			<a class="navbar-brand" href="index.html"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Melbourne_train_logo.svg/1022px-Melbourne_train_logo.svg.png" style="width: 50px; height: 50px"></a>
 
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav me-auto">
@@ -63,17 +63,28 @@
 		</div>
 	</div>
 	</nav>
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+		<div class="container container-fluid">
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link">@ 2025 Ng & Singh</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="ICTsources.pdf">Sources</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
 <body>
 <div id="Train">
 <center>
 <h1> MRT Line 3 Train Guide</h1>
-</center>
-<br>
-<div class="container-fluid">
-<div class="col-md-6">
-<div id="Tr">
-<center>
-<h3><label><span style="color: skyblue;">From where?</h3></label></span>
+<br><br>
+<h3><label><span style="color: powderblue;">From where?</h3></label></span>
 <select class="form-select" id="Start">
 	<option value="0">Choose your station</option>
 	<option value="0">North. Ave </option>
@@ -92,7 +103,7 @@
 	
 </select>
 <br>
-<h3><label><span style="color: skyblue;">To where?</h3></label></span>
+<h3><label><span style="color: powderblue;">To where?</h3></label></span>
 <select class="form-select" id="Dest">
 	<option value="0">Choose your destination</option>
 	<option value="0">North. Ave </option>
@@ -110,7 +121,7 @@
 	<option value="15">Taft Ave.</option>
 </select>
 <br><br>
-<h4> <span style="color: powderblue;">Check price! </h4></span>
+<h4> <span style="color: skyblue;">Check price! </h4></span>
 <br>
 <button type="Submit" class="btn btn-info" onclick="price()">Regular Price</button>
 <button type="Submit" class="btn btn-info" onclick="dprice()">Discounted Price</button>
@@ -133,56 +144,67 @@
 </div>
 </div>
 
-<!--
-
-References:
-https://mrt3.com/index.php/menu-fare-tickets.html
-
-https://www.researchgate.net/figure/Manila-Metro-Rail-Transit-Line-3-MRT-3-system_fig1_348470949
-
-https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.researchgate.net%2Ffigure%2Fnside-an-MRT-2-Train_fig2_287358630&psig=AOvVaw0Ax7zhL9cX2Ff4Nt4MwCve&ust=1740628894880000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOi044m64IsDFQAAAAAdAAAAABAE
-
-https://www.istockphoto.com/search/2/image-film?phrase=mrt+philippines
-
-
--->
-</div>
-
 
 
 <script>
+
+//This is to check the price of the normal ticket.
 function price(){
+
+//The vars dest and start are used to get the value for the arithmetic operators (using the .value)
 	var dest = document.getElementById("Dest").value;
 	var start = document.getElementById("Start").value;
+
+//The var inprice is used to subtract to know the difference so we know how much the ticket costs.
 	var inprice = Number(dest) - Number(start);
+
+//The var price is used to make sure it is not negative as that wouldn't make sense. (using the .abs)
 	var price = Math.abs(inprice)
+
+//The var fprice is used to calculate for the actual price, as the inprice shows just how much is added to the standard value which is 13.
 	var fprice = Number(price) + 13;
+
+//The var fp is to have the final value only be in two (2) decimal places. 
 	var fp = fprice.toFixed(2);
-	window.alert(fp);
+
+//The window alert is supposed to let the person know how much the ticket will be.
+	window.alert("Your ticket will cost " + fp "₱.");
 }
 
 function dprice(){
+
+//The comments for the variables with the same name in the 1st function will be the same ones here, so I won't repeat them. I will just explain the new variable. -Ng
+
 	var dest = document.getElementById("Dest").value;
 	var start = document.getElementById("Start").value;
 	var inprice = Number(dest) - Number(start);
 	var price = Math.abs(inprice)
 	var fprice = Number(price) + 13;
+
+//The var dprice is to have a discount, so I multiplied it by 0.2 so it would have a 20% discount.
+
 	var dprice = Number(fprice) * 0.2;
 	var di = dprice.toFixed(2);
-	window.alert(di);
+
+//The window alert is supposed to let the person know how much the ticket will be.
+	window.alert("Your ticket will cost " + di "₱.");
 }
 
+//This function is to alert the person that they have bought the ticket.
 function Purc(){
 	window.alert("Your ticket has now been purchased, thank you!");
 }
 
+//This function is to alert the person that they have bought the stored value ticket.
 function svtp(){
 	window.alert("Your stored value ticket has now been purchased, thank you!");
 }
 
+//This function is to alert the person that they have bought the discounted stored value ticket.
 function dsvtp(){
 	window.alert("Your stored value ticket has now been purchased, thank you!");
 }
 
 </script>
 </body>
+</html>
